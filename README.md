@@ -5,6 +5,14 @@
  after authentication
 
  Header
+ --Routing of app
+ --form createion
+ --Login in 
+ --sign in 
+ --sign up
+ --Form validation
+ --useRef hook
+
  -main-movie
     - Trailer in background
     - Title & description
