@@ -43,10 +43,10 @@ const Header = () => {
   }
 
   return (
-    <div className="shadow-xl">
+    <div className="relative inset-shadow-sm z-10 ">
       <div className="container flex justify-between items-center">
       <img
-        className="w-100 max-w-40 object-cover cursor-pointer"
+        className="w-100 max-w-50 object-cover cursor-pointer"
         src={logo}
         alt="logo"
       />
@@ -54,7 +54,7 @@ const Header = () => {
       {user && (
         <div className="flex flex-wrap gap-4">
           <select
-            className="border text-black border-gray-400 w-30 py-2 rounded-lg px-4 cursor-pointer outline-none"
+            className="border text-white border-gray-400 w-30 py-2 rounded-lg px-4 cursor-pointer outline-none"
             name="lang"
             id="lang"
           >
