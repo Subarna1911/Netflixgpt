@@ -1,44 +1,22 @@
-import React from 'react'
-import Header from '../components/Header';
-import { useEffect } from 'react';
-import { ApiOptions } from '../utils/constant';
-import { useDispatch } from 'react-redux';
-import {addNowPlayingMovies} from '../utils/movieSlice'
+import React from "react";
+import Header from "../components/Header";
+import useNowPlayingMovies from  '../hooks/useNowPlayingMovies'
+import MainContainer from "./MainContainer";
+import SecondaryContainer from "./SecondaryContainer";
 
 const Browse = () => {
 
-  const dispatch = useDispatch();
-
-  useEffect(()=>{
-       getNowPlayingMovies();
-  }, []);
-
-  const getNowPlayingMovies = async()=>{
-
-   try {
-    const data = await fetch('https://api.themoviedb.org/3/movie/now_playing?page=1', ApiOptions);
-    const json = await  data.json();
-    console.log(json.results);
-    dispatch(addNowPlayingMovies(json.results));
-
-   }
-
-   catch(error){
-
-    console.log("error fetching movie data ", error);
-
-   }
-
-  } 
+  useNowPlayingMovies(); //custom hook is being used
 
   return (
-   <>
-  <div className='bg-black opacity-75  h-screen'>
-   <Header/>
-  </div>
-   
-   </>
-  )
-}
+    <>
+      <div className="h-screen">
+        <Header />
+        <MainContainer/>
+        <SecondaryContainer/>
+      </div>
+    </>
+  );
+};
 
-export default Browse
+export default Browse;

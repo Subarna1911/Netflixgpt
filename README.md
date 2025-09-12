@@ -24,6 +24,13 @@
   --registered for tmdb api and create an App
   --to get  the data fo movielist and fetched data .
 
+DESIGN OF OUR MOVIE PAGE.
+--main container
+--videoBackground
+--videoTitle
+---SecondaryContainer
+  --MovieList * n;
+  -- cards *n;
 
 
  -main-movie
