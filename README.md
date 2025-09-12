@@ -12,6 +12,10 @@
  --sign up
  --Form validation
  --useRef hook
+ --Deploying our app to production
+  --- create a sign up user account
+  --- created a sign in using api
+  ---createda  a user store using userSlice
 
  -main-movie
     - Trailer in background

@@ -1,26 +1,85 @@
 import React from 'react'
 import Header from '../components/Header'
 import banner from '../assets/banner.jpg'
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { checkValidateData } from '../utils/validate';
-
+import {auth} from '../utils/firebase';
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+
+  const navigate =  useNavigate();
   
   const[isSignIn, setIsSignIn] = useState(true);
   const[errorMessage, setErrorMessage] = useState(null);
  
-  const email    = useRef(null);
-  const password = useRef(null);
+  const email      = useRef(null);
+  const password   = useRef(null);
+  const userName   = useRef(null);
 
   const toggleSignInForm = ()=>{
     setIsSignIn(!isSignIn);
-
   }
 
   const handleBtnClick =()=>{
   const message = (checkValidateData(email.current.value, password.current.value));
  setErrorMessage(message);
+
+ if(message) return;
+
+// this is for sign up.
+ if(!isSignIn){
+  createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+  .then((userCredential) => {
+  
+    const user = userCredential.user;
+
+        updateProfile(user , {
+  displayName: userName.current.value,
+  photoURL: "https://marketplace.canva.com/EAFOWUXOOvs/1/0/1600w/canva-green-gradient-minimalist-simple-instagram-profile-picture-tBlf3wVYGhg.jpg",
+}).then(() => {
+
+   navigate("/browse");
+  
+}).catch((error) => {
+   setErrorMessage(error.message);
+});
+    console.log(user);
+  
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setErrorMessage(errorCode + 
+      "_" + errorMessage);
+  });
+
+ }
+
+// this is for sign in 
+else {
+
+   signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    console.log(user);
+    navigate("/browse");
+
+  })
+
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setErrorMessage("User not found");
+  });
+
+
+
+}
+
+
+
   }
  
   return (
@@ -42,7 +101,7 @@ const Login = () => {
           <form onSubmit={(e)=>e.preventDefault()} className='flex w-90 p-8 rounded-lg  flex-col items-center justify-center gap-3 bg-black opacity-75'>
             <h2 className='text-2xl text-white font-bogart font-bold mb-4'>{isSignIn?"Sign In" : "Sign Up"}</h2>
               {!isSignIn &&
-             <input   className='w-70 outline-none border p-2 rounded-lg border-gray-200 bg-slate-800' type="text"  placeholder='Fullname' autoComplete='username' />
+             <input  ref = {userName} className='w-70 outline-none border p-2 rounded-lg border-gray-200 bg-slate-800' type="text"  placeholder='Fullname' autoComplete='username' />
               }
             <input ref = {email} className='w-70 outline-none border p-2 rounded-lg border-gray-200 bg-slate-800' type="text"  placeholder='email address' autoComplete='email-address' />
 
