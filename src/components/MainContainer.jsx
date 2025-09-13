@@ -12,15 +12,14 @@ const MainContainer = () => {
   const { original_title, overview, id } = mainMovie;
 
   return (
-    <div className="absolute top-0">
-    <div className="relative w-full h-screen overflow-hidden ">
-  
-    <VideoBackground movieId={id}/>
-
-  <div className="container absolute top-0 left-8 w-full h-full flex items-center text-white">
-    <VideoTitle title={original_title} overview={overview} />
+  <div className="relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-screen overflow-hidden">
+  <VideoBackground movieId={id} /> 
+  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+  <div className="absolute inset-0 flex items-center">
+    <div className="max-w-screen-xl px-8 mx-auto">
+      <VideoTitle title={original_title} overview={overview} />
+    </div>
   </div>
-</div>
 </div>
   );
 };

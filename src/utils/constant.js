@@ -11,3 +11,6 @@ export const ApiOptions = {
 };
 
 
+export const ImgCdnUrl = "https://image.tmdb.org/t/p/w500";
+
+

@@ -10,7 +10,7 @@ const Browse = () => {
 
   return (
     <>
-      <div className="h-screen">
+      <div className="bg-primary">
         <Header />
         <MainContainer/>
         <SecondaryContainer/>

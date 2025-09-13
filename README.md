@@ -21,9 +21,26 @@
   --unsubscribed  to the oathstatechanged callback
   --always add constant.js to put all tyhe constant values.
 
+
   --registered for tmdb api and create an App
   --to get  the data fo movielist and fetched data .
+  --custom hook for now playing movies
+  --update with movies data
+  --created a movie slice
+  --planning for main container and secondary container
+  --fetch data for trailer video
+  --update store with trailer video data
+  --embeded the youtube video
+  --make it autoplay and mute
+  --added tailwind css.
 
+plan for secondary container
+Movielist- popular
+movielist - Now playing
+movielist - trending
+movielist - mustwatch
+
+ 
 DESIGN OF OUR MOVIE PAGE.
 --main container
 --videoBackground
