@@ -6,6 +6,7 @@ import { auth } from "../utils/firebase";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { toggleGptSearchView } from "../utils/gptSearchSlice";
+import { supportedLang } from "../utils/constant";
 
 const Header = () => {
   const user = useSelector((store) => store.user);
@@ -50,9 +51,9 @@ const Header = () => {
       });
   }
 
-  const handleGptSearchClick = ()=>{
-    dispatch ( toggleGptSearchView() );
-  }
+  const handleGptSearchClick = () => {
+    dispatch(toggleGptSearchView());
+  };
 
   return (
     <header
@@ -74,14 +75,23 @@ const Header = () => {
         {/* Right Section */}
         {user && (
           <div className="flex items-center gap-3 md:gap-5">
-         
-             <button onClick={handleGptSearchClick}
+            <select
+              className="border border-gray-400 bg-white text-sm md:text-base py-1 md:py-2 px-2 md:px-4 rounded-lg cursor-pointer outline-none"
+              name="lang"
+              id="lang"
+            >
+              {supportedLang.map((lang) => (
+                <option key={lang.identifier} value={lang.identifier}>{lang.name}</option>
+              ))}
+            </select>
+
+            <button
+              onClick={handleGptSearchClick}
               className="py-1 px-3 md:py-2 md:px-4 bg-blue-600 text-white text-sm md:text-base rounded-lg cursor-pointer hover:bg-secondary transition"
             >
               GptSearch
             </button>
 
-  
             <button
               onClick={handleSignOut}
               className="py-1 px-3 md:py-2 md:px-4 bg-red-600 text-white text-sm md:text-base rounded-lg cursor-pointer hover:bg-secondary transition"
