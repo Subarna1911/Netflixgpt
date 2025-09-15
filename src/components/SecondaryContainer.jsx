@@ -8,7 +8,13 @@ const SecondaryContainer = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto px-8 py-12">
+     
       <MovieList title="Now Playing" movies={movies.nowPlayingMovies} />
+      <MovieList title="Popular Movies" movies={movies.popularMovies} />
+      <MovieList title="Top Rated Movies" movies={movies.topRatedMovies} />
+      <MovieList title="Upcoming Movies" movies={movies.upcomingMovies} />
+    
+
    </div>
   )
 }

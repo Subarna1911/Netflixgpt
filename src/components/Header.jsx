@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../assets/logo11.png";
+import logo from "../assets/netflixLogo.png";
 import { useNavigate } from "react-router-dom";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
@@ -60,7 +60,7 @@ const Header = () => {
       <div className="max-w-screen-xl px-8 mx-auto flex justify-between items-center  py-2">
         {/* Logo */}
         <img
-          className="w-20 md:w-28 object-contain cursor-pointer"
+          className="w-28 md:w-30 object-contain cursor-pointer"
           src={logo}
           alt="logo"
           onClick={() => navigate("/browse")}
@@ -89,7 +89,7 @@ const Header = () => {
  
             <button
               onClick={handleSignOut}
-              className="py-1 px-3 md:py-2 md:px-4 bg-seconday text-white text-sm md:text-base rounded-lg cursor-pointer hover:bg-secondary transition"
+              className="py-1 px-3 md:py-2 md:px-4 bg-red-600 text-white text-sm md:text-base rounded-lg cursor-pointer hover:bg-secondary transition"
             >
               Sign Out
             </button>

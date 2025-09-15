@@ -152,7 +152,7 @@ const Login = () => {
       {/* Button */}
       <button
         onClick={handleBtnClick}
-        className="bg-blue-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-700 transition"
+        className="bg-red-600 text-white px-6 py-2 cursor-pointer rounded-lg font-bold hover:bg-red-700 transition"
       >
         {isSignIn ? "Sign In" : "Sign Up"}
       </button>

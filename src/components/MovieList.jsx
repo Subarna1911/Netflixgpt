@@ -1,20 +1,52 @@
 import React from 'react'
 import MovieCard from './MovieCard'
+import { Swiper, SwiperSlide } from "swiper/react"
+import { MoveLeft, MoveRight } from "lucide-react"
 
-const MovieList = ({title, movies}) => {
+import "swiper/css"
+import "swiper/css/navigation"
 
-  console.log(movies);
+import { Navigation } from "swiper/modules"
 
-  if(!movies || movies.length === 0) return null;
-   
+const MovieList = ({ title, movies }) => {
+  if (!movies || movies.length === 0) return null
+
   return (
-     <div>
-      <h1 className="text-2xl font-bold mb-8 text-white">{title}</h1>
-      <div  className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} posterPath={movie.poster_path} />
-        ))}
+    <div className="relative my-8">
+     
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="text-2xl font-bold text-white">{title}</h1>
+        <div className="flex space-x-2">
+          <div className="swiper-button-prev-custom p-3 bg-black/50 rounded-full cursor-pointer">
+            <MoveLeft className="text-red-400 md:w-6 md:h-6 w-3 h-3" />
+          </div>
+          <div className="swiper-button-next-custom p-3 bg-black/50 rounded-full cursor-pointer">
+            <MoveRight className="text-red-400 md:w-6 md:h-6 w-3 h-3" />
+          </div>
+        </div>
       </div>
+
+      {/* Swiper carousel */}
+      <Swiper
+        modules={[Navigation]}
+        spaceBetween={15}
+        slidesPerView={2}
+        navigation={{
+          nextEl: ".swiper-button-next-custom",
+          prevEl: ".swiper-button-prev-custom",
+        }}
+        breakpoints={{
+          640: { slidesPerView: 3 },
+          768: { slidesPerView: 4 },
+          1024: { slidesPerView: 6 },
+        }}
+      >
+        {movies.map((movie) => (
+          <SwiperSlide key={movie.id}>
+            <MovieCard posterPath={movie.poster_path} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   )
 }
