@@ -19,8 +19,7 @@ const VideoBackground = ({ movieId }) => {
     }
     title="YouTube video player"
     allow="autoplay; encrypted-media; fullscreen"
-    allowFullScreens
-    
+
   ></iframe>
 </div>
 

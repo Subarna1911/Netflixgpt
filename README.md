@@ -34,11 +34,14 @@
   --make it autoplay and mute
   --added tailwind css.
 
+
 plan for secondary container
 Movielist- popular
 movielist - Now playing
 movielist - trending
 movielist - mustwatch
+--movies are fetched and  display it on the browser.
+--now we will use gpt open ai fetures to search for the movies.
 
  
 DESIGN OF OUR MOVIE PAGE.

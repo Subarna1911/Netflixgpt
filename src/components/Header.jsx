@@ -5,6 +5,7 @@ import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
+import { toggleGptSearchView } from "../utils/gptSearchSlice";
 
 const Header = () => {
   const user = useSelector((store) => store.user);
@@ -49,6 +50,10 @@ const Header = () => {
       });
   }
 
+  const handleGptSearchClick = ()=>{
+    dispatch ( toggleGptSearchView() );
+  }
+
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
@@ -70,23 +75,13 @@ const Header = () => {
         {user && (
           <div className="flex items-center gap-3 md:gap-5">
          
-            <select
-              className="border border-gray-400 bg-black/60 text-white text-sm md:text-base py-1 md:py-2 px-2 md:px-4 rounded-lg cursor-pointer outline-none"
-              name="lang"
-              id="lang"
+             <button onClick={handleGptSearchClick}
+              className="py-1 px-3 md:py-2 md:px-4 bg-blue-600 text-white text-sm md:text-base rounded-lg cursor-pointer hover:bg-secondary transition"
             >
-              <option className="text-black" value="English">
-                English
-              </option>
-              <option className="text-black" value="Nepali">
-                Nepali
-              </option>
-              <option className="text-black" value="Hindi">
-                Hindi
-              </option>
-            </select>
+              GptSearch
+            </button>
 
- 
+  
             <button
               onClick={handleSignOut}
               className="py-1 px-3 md:py-2 md:px-4 bg-red-600 text-white text-sm md:text-base rounded-lg cursor-pointer hover:bg-secondary transition"
