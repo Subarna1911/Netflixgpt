@@ -64,3 +64,7 @@ DESIGN OF OUR MOVIE PAGE.
  - search bar
  - Movie suggestions
  -->
+
+
+-- created configSlice to put all the apps different configuration such as theme, laanguage et.
+-- set up configSlice.

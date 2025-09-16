@@ -7,10 +7,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { toggleGptSearchView } from "../utils/gptSearchSlice";
 import { supportedLang } from "../utils/constant";
-
+import { changeLanguage } from "../utils/configSlice";
 const Header = () => {
   const user = useSelector((store) => store.user);
-  const navigate = useNavigate();
+  const showGptSearch  = useSelector(store=>store.gpt.showGptSearch);
+  const navigate = useNavigate();showGptSearch
   const dispatch = useDispatch();
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -55,6 +56,12 @@ const Header = () => {
     dispatch(toggleGptSearchView());
   };
 
+  const handleLangChange = (e)=>{
+    
+    dispatch(changeLanguage(e.target.value));
+  }
+
+
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
@@ -75,21 +82,25 @@ const Header = () => {
         {/* Right Section */}
         {user && (
           <div className="flex items-center gap-3 md:gap-5">
-            <select
-              className="border border-gray-400 bg-white text-sm md:text-base py-1 md:py-2 px-2 md:px-4 rounded-lg cursor-pointer outline-none"
-              name="lang"
-              id="lang"
-            >
-              {supportedLang.map((lang) => (
-                <option key={lang.identifier} value={lang.identifier}>{lang.name}</option>
-              ))}
-            </select>
+            {showGptSearch &&(
+              <select
+                className="border border-gray-400 bg-white text-sm md:text-base py-1 md:py-2 px-2 md:px-4 rounded-lg cursor-pointer outline-none"
+                name="lang"
+                id="lang"
+                onChange={handleLangChange}
+              >
+                {supportedLang.map((lang) => (
+                  <option key={lang.identifier} value={lang.identifier}>{lang.name}</option>
+                ))}
+              </select>
+            )
+           }
 
             <button
               onClick={handleGptSearchClick}
               className="py-1 px-3 md:py-2 md:px-4 bg-blue-600 text-white text-sm md:text-base rounded-lg cursor-pointer hover:bg-secondary transition"
             >
-              GptSearch
+            {showGptSearch ? "Home" : "GptSearch"}  
             </button>
 
             <button
