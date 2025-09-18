@@ -5,8 +5,13 @@ const fetchMovieRecommendations = async (query) => {
     body: JSON.stringify({ query }),
   });
 
-  return await response.text();
+  if (!response.ok) {
+    throw new Error("Failed to fetch movies");
+  }
+
+  return await response.json(); 
 };
+
 
 
 export default fetchMovieRecommendations;

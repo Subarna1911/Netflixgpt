@@ -11,7 +11,7 @@ import { changeLanguage } from "../utils/configSlice";
 const Header = () => {
   const user = useSelector((store) => store.user);
   const showGptSearch  = useSelector(store=>store.gpt.showGptSearch);
-  const navigate = useNavigate();showGptSearch
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isScrolled, setIsScrolled] = useState(false);
 
