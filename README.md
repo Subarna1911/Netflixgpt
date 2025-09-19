@@ -63,6 +63,15 @@ DESIGN OF OUR MOVIE PAGE.
 -NetflixGpt
  - search bar
  - Movie suggestions
+  --Take user input from a search box.
+
+-- Fetch GPT-based recommended movies.
+
+-- Search for those movies in TMDB.
+
+-- Store the results in Redux.
+
+-- Expose loading state and input ref for UI handling.
  -->
 
 

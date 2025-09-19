@@ -1,25 +1,31 @@
 import React from 'react'
 import GptSearchBar from './GptSearchBar'
-import GptMovieSuggestions from './GptMovieSuggestions'
 import {bannerBg} from '../utils/constant'
 
 const GptSearchPage = () => {
   return (
-
-   <div
-    className="w-full h-screen bg-cover bg-center flex flex-col overflow-hidden"
-    style={{ backgroundImage: `url(${bannerBg})` }}
-  >
-    
-    <div className='max-w-screen-xl flex justify-center items-center flex-col pt-20 px-6"'>
-         <GptSearchBar />
-         <GptMovieSuggestions />
+    <div className="min-h-screen w-full bg-cover bg-center bg-fixed overflow-hidden" 
+         style={{ backgroundImage: `url(${bannerBg})` }}>
+      
+      <div className="bg-black/50 min-h-screen">
+        <div className="max-w-screen-xl mx-auto flex flex-col items-center pt-12 sm:pt-20 px-4 sm:px-6">
+          
+          <div className="text-center mb-8 sm:mb-12">
+            <h1 className="text-2xl sm:text-4xl font-bold text-white mb-2">
+              AI Movie Search
+            </h1>
+            <p className="text-gray-300 text-sm sm:text-base">
+              Discover movies with AI recommendations
+            </p>
+          </div>
+          
+          <div className="w-full mb-8">
+            <GptSearchBar />
+          </div>
+        </div>
+      </div>
     </div>
-
-</div>
-
   )
 }
 
 export default GptSearchPage
-

@@ -5,7 +5,6 @@ import GptMovieSuggestions from "./GptMovieSuggestions";
 
 const GptSearchBar = () => {
   //  hook is being used
-
   const { langKey, loading, searchTxt, handleGptSearch } = useGptSearch();
 
   return (
@@ -33,7 +32,7 @@ const GptSearchBar = () => {
           {loading ? "Searching..." : lang[langKey].search}
         </button>
       </form>
-      <GptMovieSuggestions />
+      <GptMovieSuggestions loading = {loading} />
     </div>
   );
 };

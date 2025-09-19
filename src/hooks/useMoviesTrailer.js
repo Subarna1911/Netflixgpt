@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { ApiOptions } from "../utils/constant";
-import { useDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
 import { addMoviesTrailer } from "../utils/movieSlice";
 
-const useMoviesTrailer = (movieId) => {
+  const useMoviesTrailer = (movieId) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getMovieVideos();
+     getMovieVideos();
   }, []);
 
   const getMovieVideos = async () => {

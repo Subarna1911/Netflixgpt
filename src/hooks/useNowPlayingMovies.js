@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ApiOptions } from "../utils/constant";
 import {
   addNowPlayingMovies,
@@ -10,11 +10,17 @@ import {
 
 const useNowPlayingMovies = () => {
   const dispatch = useDispatch();
+  const nowPlayingMovies = useSelector(
+    (store) => store.movies.nowPlayingMovies
+  );
+  const popularMovies = useSelector((store) => store.movies.popularMovies);
+  const topRatedMovies = useSelector((store) => store.movies.topRatedMovies);
+  const upcomingMovies = useSelector((store) => store.movies.upcomingMovies);
   useEffect(() => {
-    getNowPlayingMovies();
-    getPopularMovies();
-    getTopRatedMovies();
-    getUpcomingMovies();
+    !nowPlayingMovies && getNowPlayingMovies(); //memoization is done to prevent from re-renders
+    !popularMovies  && getPopularMovies();
+    !topRatedMovies && getTopRatedMovies();
+    !upcomingMovies && getUpcomingMovies();
   }, []);
 
   // get npow playing movies

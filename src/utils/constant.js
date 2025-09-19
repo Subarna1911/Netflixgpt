@@ -9,7 +9,7 @@ export const ApiOptions = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNTIwMTBhMzlkZDYwMDVlZGUxZDY0Nzk4ZGU4MGJkYyIsIm5iZiI6MTc0NzY3NDg0MS44MDMsInN1YiI6IjY4MmI2NmQ5YTU4YzUwOTg1MzJmNzY0YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.--RFuJTgCSK-CeN4Oz_eRoWbo7VHUwzuUTZqFKsYI_g",
+      "Bearer " + import.meta.env.VITE_TMDB_API,
   },
 };
 
@@ -22,7 +22,7 @@ export const supportedLang = [
   { identifier: "spanish", name: "Spanish" },
 ];
 
-export const OPENROUTER_API_KEY = import.meta.env.VITE_OPENROUTER_API_KEY;
+
 
 
 

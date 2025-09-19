@@ -1,36 +1,34 @@
 import React from "react";
 import { useGptSearch } from "../hooks/useGptSearch";
+import MovieList from "./MovieList";
+import Shimmer from "./Shimmer";
 
 const GptMovieSuggestions = () => {
-  const { gptMovies } = useGptSearch();
+  const { gptMovies, loading } = useGptSearch();
+  const { movieResults } = gptMovies || {};
+  if(loading){
+    return(
+      <div className="max-w-screen-xl mx-auto px-6 py-10">
+        <Shimmer />
+      </div>
+    );
+  }
+
+  if (!movieResults?.length) return null;
 
   return (
-    <div>
-      {gptMovies && gptMovies.length > 0 && (
-        <div className="flex flex-wrap gap-3 mt-6 p-4 mx-auto bg-gray-800 text-white rounded-lg">
-          {gptMovies.map((movie) => (
-            <div key={movie.id} className="mb-4 border-b border-gray-600 pb-2">
-              <h3 className="text-lg font-semibold">
-                {movie.title || movie.name}
-              </h3>
-              <p className="text-sm text-gray-400">
-                {movie.release_date
-                  ? new Date(movie.release_date).getFullYear()
-                  : movie.first_air_date
-                  ? new Date(movie.first_air_date).getFullYear()
-                  : "Release date not available"}
-              </p>
-              {movie.poster_path && (
-                <img
-                  src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                  alt={movie.title || movie.name}
-                  className="mt-2 rounded-lg"
-                />
-              )}
-            </div>
-          ))}
-        </div>
-      )}
+    <div className="max-w-screen-xl mx-auto px-6 py-10 space-y-8">
+
+      {movieResults
+        .filter(group => group.results?.length)
+        .map(group => (
+          <div key={group.name}>
+            <h2 className="text-2xl font-semibold text-white pb-2">
+              {group.name}
+            </h2>
+            <MovieList movies={group.results} />
+          </div>
+        ))}
     </div>
   );
 };
