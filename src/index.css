@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
  :root{
-    --primary-color:#000000;
-    --sec-color:#3B82F6;
+    --primary-color:#0e0a0d;
+    --sec-color:#fa3862;
+    --btn-color:#250e15;
  }
 
 @layer utilities {
@@ -12,6 +13,10 @@
 
   .bg-seconday{
     background-color: var(--sec-color);
+  }
+
+  .bg-btn{
+    background-color: var(--btn-color);
   }
 
 }   
