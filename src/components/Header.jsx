@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
-import logo from "../assets/netflixLogo.png";
+import logo from "../assets/logoPro.png";
+import { Search } from 'lucide-react';
+import { House } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import { signOut, onAuthStateChanged } from "firebase/auth";
+import { ChevronRight } from 'lucide-react';
 import { auth } from "../utils/firebase";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { toggleGptSearchView } from "../utils/gptSearchSlice";
 import { supportedLang } from "../utils/constant";
 import { changeLanguage } from "../utils/configSlice";
+
 const Header = () => {
   const user = useSelector((store) => store.user);
   const showGptSearch  = useSelector(store=>store.gpt.showGptSearch);
@@ -95,23 +99,28 @@ const Header = () => {
               </select>
             )
            }
-
+            
+        
             <button
               onClick={handleGptSearchClick}
-              className="py-1 px-3 md:py-2 md:px-4 bg-blue-600 text-white text-sm md:text-base rounded-lg cursor-pointer hover:bg-secondary transition"
+              className="text-white cursor-pointer transition duration-500 hover:text-[#fa3862]"
             >
-            {showGptSearch ? "Home" : "GptSearch"}  
+            {showGptSearch ? <House className="size-6"/> : <Search className="size-6"/>}  
             </button>
+           
 
-            <button
-              onClick={handleSignOut}
-              className="py-1 px-3 md:py-2 md:px-4 bg-red-600 text-white text-sm md:text-base rounded-lg cursor-pointer hover:bg-secondary transition"
-            >
-              Sign Out
-            </button>
-
+           
+            <div className="relative inline-block">
+          <button
+            onClick={handleSignOut}
+            className=" text-white flex items-center justify-center gap-2 px-4 py-2 w-full min-w-[100px] bg-secondary text-sm font-semibold rounded-full cursor-pointer hover:opacity-75 transition-all duration-200 shadow-md hover:shadow-lg"
+          >
+            Sign Out
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
             <img
-              className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover cursor-pointer"
+              className="w-8 h-8 md:w-8 md:h-8 rounded-full object-cover cursor-pointer"
               src={user?.photoURL || "/default-avatar.png"}
               alt="userProfile"
             />

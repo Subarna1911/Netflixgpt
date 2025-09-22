@@ -4,6 +4,7 @@
     --primary-color:#0e0a0d;
     --sec-color:#fa3862;
     --btn-color:#250e15;
+    --color-pink:#f16b88;
  }
 
 @layer utilities {
@@ -11,12 +12,16 @@
     background-color: var(--primary-color);
   }
 
-  .bg-seconday{
+  .bg-secondary {
     background-color: var(--sec-color);
   }
 
   .bg-btn{
     background-color: var(--btn-color);
+  }
+
+  .bg-darkpink{
+    background-color:var(--color-pink);
   }
 
 }   
