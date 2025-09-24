@@ -26,7 +26,7 @@ const GptSearchBar = () => {
           className={`w-full sm:w-auto px-6 py-2 rounded-lg font-medium transition cursor-pointer ${
             loading
               ? "bg-gray-500 cursor-not-allowed"
-              : "bg-red-600 hover:bg-red-700 text-white"
+              : "bg-secondary hover:opacity-75 text-white"
           }`}
         >
           {loading ? "Searching..." : lang[langKey].search}

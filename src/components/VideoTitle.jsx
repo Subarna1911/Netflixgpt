@@ -1,5 +1,5 @@
 import React from "react";
-import { Play, MoveRight } from "lucide-react";
+import { Play, Info } from "lucide-react";
 
 const VideoTitle = ({ title, overview }) => {
   return (
@@ -13,12 +13,12 @@ const VideoTitle = ({ title, overview }) => {
           <button className="bg-white text-black hover:text-white font-bold rounded-lg w-35 cursor-pointer p-2 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-slate-400">
             <span className="flex items-center gap-2 justify-center">
              
-              <Play size={20} />
+              <Play />
               Play
             </span>
           </button>
           <button className="bg-gray-400 rounded-lg font-bold text-white p-2 cursor-pointer  w-35 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-gray-500">
-          <span className="flex gap-3 items-center">More info <MoveRight size={20} /></span>  
+          <span className="flex gap-3 items-center">More info <Info/></span>  
           </button>
         </div>
       </div>

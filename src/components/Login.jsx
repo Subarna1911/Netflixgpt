@@ -1,6 +1,13 @@
 import React from "react";
-import Header from "../components/Header";
-import { bannerBg } from "../utils/constant";
+import Header from "../components/Header"
+import bgImg from '../assets/bgImg.jpg'
+import netflix from '../assets/netflic.jpg'
+import greencam from '../assets/greencam.png'
+import mvPhoto from '../assets/mvphoto.png'
+import pop from '../assets/pop.png'
+import moviecam from '../assets/movicam.png'
+
+
 import { useState, useRef } from "react";
 import { checkValidateData } from "../utils/validate";
 import { auth } from "../utils/firebase";
@@ -97,9 +104,17 @@ const Login = () => {
   {/* Background */}
   <img
     className="object-cover w-full h-full absolute inset-0"
-    src={bannerBg}
+    src={bgImg}
     alt="banner"
   />
+   <div className="absolute sticker top-14 left-20">
+    <img className="w-16 h-16" src={greencam} alt="sticker" />
+    
+     <img className="w-16 h-16" src={mvPhoto} alt="sticker" />
+     <img className="w-16 h-16" src={moviecam } alt="sticker" />
+     <img className="w-16 h-16" src={pop} alt="sticker" />
+  </div>
+
   <div className="absolute inset-0 bg-black/20"></div>
   <Header/>
 
@@ -152,7 +167,7 @@ const Login = () => {
       {/* Button */}
       <button
         onClick={handleBtnClick}
-        className="bg-red-600 text-white px-6 py-2 cursor-pointer rounded-lg font-bold hover:bg-red-700 transition"
+        className="bg-secondary text-white px-6 py-2 cursor-pointer rounded-lg font-bold hover:opacity-75 transition"
       >
         {isSignIn ? "Sign In" : "Sign Up"}
       </button>
@@ -168,7 +183,7 @@ const Login = () => {
       </p>
     </form>
   </div>
-</div>
+    </div>
 
   );
 };

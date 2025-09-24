@@ -74,10 +74,10 @@ const Header = () => {
           : "bg-gradient-to-b from-black/60 to-transparent"
       }`}
     >
-      <div className="max-w-screen-xl px-8 mx-auto flex justify-between items-center  py-2">
+      <div className="max-w-screen-xl px-8 mx-auto flex justify-between items-center">
         {/* Logo */}
         <img
-          className="w-28 md:w-30 object-contain cursor-pointer"
+          className="w-24 md:w-28 object-contain cursor-pointer"
           src={logo}
           alt="logo"
           onClick={() => navigate("/browse")}
@@ -86,9 +86,17 @@ const Header = () => {
         {/* Right Section */}
         {user && (
           <div className="flex items-center gap-3 md:gap-5">
+
+             <button
+              onClick={handleGptSearchClick}
+              className="text-white cursor-pointer transition duration-500 hover:text-[#fa3862]"
+            >
+            {showGptSearch ? <House className="size-6"/> : <Search className="size-6"/>}  
+            </button>
+            
             {showGptSearch &&(
               <select
-                className="border border-gray-400 bg-white text-sm md:text-base py-1 md:py-2 px-2 md:px-4 rounded-lg cursor-pointer outline-none"
+               className="text-white flex items-center justify-center gap-2 px-4 py-2 w-full min-w-[120px] bg-secondary text-sm font-semibold rounded-full cursor-pointer hover:opacity-75 transition-all duration-200 shadow-md hover:shadow-lg outline-none"
                 name="lang"
                 id="lang"
                 onChange={handleLangChange}
@@ -100,20 +108,11 @@ const Header = () => {
             )
            }
             
-        
-            <button
-              onClick={handleGptSearchClick}
-              className="text-white cursor-pointer transition duration-500 hover:text-[#fa3862]"
-            >
-            {showGptSearch ? <House className="size-6"/> : <Search className="size-6"/>}  
-            </button>
-           
 
-           
             <div className="relative inline-block">
           <button
             onClick={handleSignOut}
-            className=" text-white flex items-center justify-center gap-2 px-4 py-2 w-full min-w-[100px] bg-secondary text-sm font-semibold rounded-full cursor-pointer hover:opacity-75 transition-all duration-200 shadow-md hover:shadow-lg"
+            className=" text-white flex items-center justify-center gap-2 px-4 py-2 w-full min-w-[120px] bg-secondary text-sm font-semibold rounded-full cursor-pointer hover:opacity-75 transition-all duration-200 shadow-md hover:shadow-lg"
           >
             Sign Out
             <ChevronRight className="w-4 h-4" />
