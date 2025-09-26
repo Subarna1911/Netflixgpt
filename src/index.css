@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+
  :root{
     --primary-color:#0e0a0d;
     --sec-color:#fa3862;
@@ -20,10 +24,8 @@
     background-color: var(--btn-color);
   }
 
-  .bg-darkpink{
-    background-color:var(--color-pink);
-  }
 
+ 
 }   
 
 
@@ -37,3 +39,15 @@
   animation: float 4s ease-in-out infinite;
 }
 
+.sticker:hover {
+  animation-play-state: paused;
+  transform: scale(1.2) rotate(5deg);
+  cursor: pointer;
+}
+
+
+@media (max-width: 1024px) {
+  .sticker {
+    display: none;
+  }
+}

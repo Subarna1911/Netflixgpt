@@ -6,28 +6,32 @@ import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 import GptSearchPage from "./GptSearchPage";
 import { useSelector } from "react-redux";
+
+import { ThemeProvider } from "../ContextApi/ThemeContext";
 const Browse = () => {
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
 
-  useNowPlayingMovies(); //custom hook is being used
-  return (
-    <>
-      <div>
-      
-       <Header />
-      {showGptSearch ? (
-        <GptSearchPage />
-      ) : (
-        <>
-          <MainContainer />
-          <SecondaryContainer />
-        </>
-      )}
- 
+  useNowPlayingMovies(); // custom hook
 
-    {!showGptSearch && <Footer />}
+  return (
+
+    <ThemeProvider>
+
+     <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300">
+        <Header />
+        {showGptSearch ? (
+          <GptSearchPage />
+        ) : (
+          <>
+            <MainContainer />
+            <SecondaryContainer />
+          </>
+        )}
+        {!showGptSearch && <Footer />}
       </div>
-    </>
+
+      </ThemeProvider>
+
   );
 };
 

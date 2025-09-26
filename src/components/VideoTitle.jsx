@@ -4,7 +4,7 @@ import { Play, Info } from "lucide-react";
 const VideoTitle = ({ title, overview }) => {
   return (
   
-      <div className="py-4 text-white">
+      <div className="py-4">
         <h1 className="text-4xl font-bold">{title}</h1>
         <p className="w-full md:w-2/3 lg:w-1/2 text-base md:text-lg leading-relaxed md:leading-loose py-6 md:py-8">
           {overview}

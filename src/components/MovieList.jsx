@@ -17,7 +17,7 @@ const MovieList = ({ title, movies }) => {
   return (
     <div className="relative my-8">
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-bold text-black">{title}</h1>
+        <h1 className="text-2xl font-bold">{title}</h1>
         <div className="flex space-x-2">
           <div ref={prevRef} className="p-3 bg-black/50 rounded-full cursor-pointer">
             <MoveLeft className="text-red-400 md:w-6 md:h-6 w-3 h-3" />
