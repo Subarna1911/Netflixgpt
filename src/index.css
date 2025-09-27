@@ -24,6 +24,17 @@
     background-color: var(--btn-color);
   }
 
+  .movie-card-container {
+  transition: all 0.3s ease;
+  transform-origin: center;
+
+}
+
+.movie-card-container:hover {
+  transform: scale(1.1) translateY(-20px);
+  z-index: 100;
+}
+
 
  
 }   

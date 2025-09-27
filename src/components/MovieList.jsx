@@ -6,7 +6,7 @@ import { MoveLeft, MoveRight } from "lucide-react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
-
+  
 const MovieList = ({ title, movies }) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -15,7 +15,7 @@ const MovieList = ({ title, movies }) => {
 
 
   return (
-    <div className="relative my-8">
+    <div className="relative my-20">
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-2xl font-bold">{title}</h1>
         <div className="flex space-x-2">
@@ -53,6 +53,7 @@ const MovieList = ({ title, movies }) => {
           .map((movie, index) => (
             <SwiperSlide key={`${movie.id}-${index}`}>
                <MovieCard movie={movie}/>
+               
             </SwiperSlide>
           ))}
       </Swiper>
