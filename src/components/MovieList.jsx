@@ -52,7 +52,7 @@ const MovieList = ({ title, movies }) => {
           .filter(movie => movie && movie.poster_path)
           .map((movie, index) => (
             <SwiperSlide key={`${movie.id}-${index}`}>
-               <MovieCard posterPath={movie.poster_path}  title={movie.title} releaseDate = {movie.release_date}/>
+               <MovieCard movie={movie}/>
             </SwiperSlide>
           ))}
       </Swiper>

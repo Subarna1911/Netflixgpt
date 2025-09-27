@@ -10,7 +10,7 @@ const GptSearchPage = () => {
       <div className="bg-black/50 min-h-screen">
         <div className="max-w-screen-xl mx-auto flex flex-col items-center pt-12 sm:pt-20 px-4 sm:px-6">
           
-          <div className="text-center mb-8 sm:mb-12">
+          <div className="text-center my-12 sm:mb-12">
             <h1 className="text-2xl sm:text-4xl font-bold text-white mb-2">
               AI Movie Search
             </h1>

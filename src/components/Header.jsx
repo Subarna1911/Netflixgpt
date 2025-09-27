@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import logo from "../assets/logoPro.png";
 import { Search } from "lucide-react";
 import { House } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { signOut, onAuthStateChanged } from "firebase/auth";
-import { ChevronRight,LogOut } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { auth } from "../utils/firebase";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
@@ -12,6 +12,8 @@ import { toggleGptSearchView } from "../utils/gptSearchSlice";
 import { supportedLang } from "../utils/constant";
 import { changeLanguage } from "../utils/configSlice";
 import ToggleThemeBtn from "../components/ToggleThemeBtn"
+
+
 
 
 const Header = () => {
@@ -74,14 +76,21 @@ const Header = () => {
           : "bg-gradient-to-b from-black/60 to-transparent"
       }`}
     >
+
+
       <div className="max-w-screen-xl px-8 mx-auto flex justify-between items-center">
-        {/* Logo */}
+
+         <div  className="text-white cursor-pointer transition duration-500 hover:text-[#fa3862] font-bold text-md">
+          <Link to="/browse/my-list">My List</Link>
+         </div>
+       
         <img
           className="w-24 md:w-28 object-contain cursor-pointer"
           src={logo}
           alt="logo"
           onClick={() => navigate("/browse")}
         />
+
 
         {/* Right Section */}
         {user && (
