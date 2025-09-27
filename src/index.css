@@ -2,8 +2,6 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-
-
  :root{
     --primary-color:#0e0a0d;
     --sec-color:#fa3862;
@@ -35,10 +33,7 @@
   z-index: 100;
 }
 
-
- 
 }   
-
 
 @keyframes float {
   0% { transform: translateY(0) rotate(0deg); }
@@ -55,7 +50,6 @@
   transform: scale(1.2) rotate(5deg);
   cursor: pointer;
 }
-
 
 @media (max-width: 1024px) {
   .sticker {
