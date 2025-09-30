@@ -13,77 +13,65 @@ const useNowPlayingMovies = () => {
   const nowPlayingMovies = useSelector(
     (store) => store.movies.nowPlayingMovies
   );
+
   const popularMovies = useSelector((store) => store.movies.popularMovies);
   const topRatedMovies = useSelector((store) => store.movies.topRatedMovies);
   const upcomingMovies = useSelector((store) => store.movies.upcomingMovies);
+
   useEffect(() => {
     !nowPlayingMovies && getNowPlayingMovies(); //memoization is done to prevent from re-renders
-    !popularMovies  && getPopularMovies();
+    !popularMovies && getPopularMovies();
     !topRatedMovies && getTopRatedMovies();
     !upcomingMovies && getUpcomingMovies();
   }, []);
 
-  // get npow playing movies
-  const getNowPlayingMovies = async () => {
+  // fetchmovies
+  const fetchMovies = async (url, action) => {
     try {
-      const data = await fetch(
-        "https://api.themoviedb.org/3/movie/now_playing?page=1",
-        ApiOptions
-      );
-      const json = await data.json();
+      const res = await fetch(url, ApiOptions);
 
-      dispatch(addNowPlayingMovies(json.results));
+      if (!res.ok) {
+        throw new Error(`Network issue or API blocked. Status: ${res.status}`);
+      }
+
+      const json = await res.json();
+
+      if (json.results) {
+        action(json.results);
+      } else {
+        console.warn("No movies found in response:", json);
+      }
     } catch (error) {
-      console.log("error fetching movie data ", error);
+      console.error("Error fetching movie data:", error);
     }
   };
 
-  // get popular movies
-
-  const getPopularMovies = async () => {
-    try {
-      const data = await fetch(
-        "https://api.themoviedb.org/3/movie/popular?page=1",
-        ApiOptions
-      );
-      const json = await data.json();
-
-      dispatch(addPopularMovies(json.results));
-    } catch (error) {
-      console.log("error fetching movie data ", error);
-    }
+  const getNowPlayingMovies = () => {
+    fetchMovies(
+      "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
+      (results) => dispatch(addNowPlayingMovies(results))
+    );
   };
 
-  // get Top rated movies
-
-  const getTopRatedMovies = async () => {
-    try {
-      const data = await fetch(
-        "https://api.themoviedb.org/3/movie/top_rated?page=1",
-        ApiOptions
-      );
-      const json = await data.json();
-
-      dispatch(addTopRatedMovies(json.results));
-    } catch (error) {
-      console.log("error fetching movie data ", error);
-    }
+  const getPopularMovies = () => {
+    fetchMovies(
+      "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+      (results) => dispatch(addPopularMovies(results))
+    );
   };
 
-  // get an upcoming movies
+  const getTopRatedMovies = () => {
+    fetchMovies(
+      "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
+      (results) => dispatch(addTopRatedMovies(results))
+    );
+  };
 
-  const getUpcomingMovies = async () => {
-    try {
-      const data = await fetch(
-        "https://api.themoviedb.org/3/movie/upcoming?page=1",
-        ApiOptions
-      );
-      const json = await data.json();
-
-      dispatch(addUpcomingMovies(json.results));
-    } catch (error) {
-      console.log("error fetching movie data ", error);
-    }
+  const getUpcomingMovies = () => {
+    fetchMovies(
+      "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
+      (results) => dispatch(addUpcomingMovies(results))
+    );
   };
 };
 

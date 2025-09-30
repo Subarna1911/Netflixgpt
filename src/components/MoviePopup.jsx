@@ -3,7 +3,7 @@ import { addMovie, removeMovie } from "../utils/watchlistSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Plus, Check } from "lucide-react";
 
-const MoviePopup = ({ movie, trailer }) => {
+  const MoviePopup = ({ movie, trailer }) => {
   const dispatch = useDispatch();
   const watchlist = useSelector((state) => state.watchlist.movieList);
 
@@ -21,7 +21,7 @@ const MoviePopup = ({ movie, trailer }) => {
   };
 
   return (
-    <div className="w-[350px] bg-zinc-900 rounded-lg shadow-2xl border border-zinc-700 animate-in fade-in-0 zoom-in-95 duration-200">
+    <div className="w-[18rem] bg-zinc-900 rounded-lg shadow-2xl border border-[#fa3862] animate-in fade-in-0 zoom-in-95 duration-200 cursor-pointer">
       {/* Media Section */}
       <div className="relative">
         {trailer ? (
@@ -47,14 +47,20 @@ const MoviePopup = ({ movie, trailer }) => {
           onClick={handleToggle}
           className="absolute top-3 right-3 bg-black/70 backdrop-blur-sm text-white p-2 rounded-full hover:bg-white hover:text-black transition-all duration-200 border border-zinc-600 hover:border-white cursor-pointer"
         >
-          {isInWatchlist ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+          {isInWatchlist ? (
+            <Check className="w-4 h-4" />
+          ) : (
+            <Plus className="w-4 h-4" />
+          )}
         </button>
       </div>
 
       {/* Content Section */}
       <div className="p-4 space-y-3">
         <div className="space-y-1">
-          <h2 className="text-white font-bold text-lg leading-tight">{movie.title}</h2>
+          <h2 className="text-white font-bold text-lg leading-tight">
+            {movie.title}
+          </h2>
           <div className="flex items-center gap-3 text-sm text-gray-400">
             <span>{movie.release_date?.split("-")[0] || "N/A"}</span>
             <span className="text-green-400 font-medium">

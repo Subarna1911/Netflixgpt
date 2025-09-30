@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux'
 const SecondaryContainer = () => {
 
   const movies = useSelector(store=>store.movies);
- 
+
   return (
 <div>
     <div className="max-w-screen-xl mx-auto px-8 py-12">

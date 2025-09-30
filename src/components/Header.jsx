@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import logo from "../assets/logoPro.png";
 import { Search } from "lucide-react";
 import { House } from "lucide-react";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { LogOut } from "lucide-react";
 import { auth } from "../utils/firebase";
@@ -11,10 +11,7 @@ import { addUser, removeUser } from "../utils/userSlice";
 import { toggleGptSearchView } from "../utils/gptSearchSlice";
 import { supportedLang } from "../utils/constant";
 import { changeLanguage } from "../utils/configSlice";
-import ToggleThemeBtn from "../components/ToggleThemeBtn"
-
-
-
+import ToggleThemeBtn from "../components/ToggleThemeBtn";
 
 const Header = () => {
   const user = useSelector((store) => store.user);
@@ -76,14 +73,11 @@ const Header = () => {
           : "bg-gradient-to-b from-black/60 to-transparent"
       }`}
     >
-
-
       <div className="max-w-screen-xl px-8 mx-auto flex justify-between items-center">
-
-         <div  className="text-white cursor-pointer transition duration-500 hover:text-[#fa3862] font-bold text-md">
+        <div className="text-white cursor-pointer transition duration-500 hover:text-[#fa3862] font-bold text-md">
           <Link to="/browse/my-list">My List</Link>
-         </div>
-       
+        </div>
+
         <img
           className="w-24 md:w-28 object-contain cursor-pointer"
           src={logo}
@@ -91,11 +85,9 @@ const Header = () => {
           onClick={() => navigate("/browse")}
         />
 
-
         {/* Right Section */}
         {user && (
           <div className="flex items-center gap-3 md:gap-8 justify-center">
-          
             {showGptSearch && (
               <select
                 className="text-white flex items-center justify-center gap-2 px-4 py-2 w-full min-w-[120px] bg-secondary text-sm font-semibold rounded-full cursor-pointer hover:opacity-75 transition-all duration-200 shadow-md hover:shadow-lg outline-none"
@@ -111,22 +103,23 @@ const Header = () => {
               </select>
             )}
 
-             <button
+            <button
               onClick={handleGptSearchClick}
               className="text-white cursor-pointer transition duration-500 hover:text-[#fa3862]"
             >
-              {showGptSearch ? (
-                <House size={20} />
-              ) : (
-                <Search size={20} />
-              )}
+              {showGptSearch ? <House size={20} /> : <Search size={20} />}
             </button>
-           
-           <ToggleThemeBtn/>
-    
-              <button className=" text-white cursor-pointer transition duration-500 hover:text-[#fa3862]"  onClick={handleSignOut}><LogOut size={20}/></button>
 
-              {/* <button
+            <ToggleThemeBtn />
+
+            <button
+              className=" text-white cursor-pointer transition duration-500 hover:text-[#fa3862]"
+              onClick={handleSignOut}
+            >
+              <LogOut size={20} />
+            </button>
+
+            {/* <button
                 onClick={handleSignOut}
                 className=" text-white flex items-center justify-center gap-2 px-4 py-2 w-full min-w-[120px] bg-secondary text-sm font-semibold rounded-full cursor-pointer hover:opacity-75 transition-all duration-200 shadow-md hover:shadow-lg"
               >

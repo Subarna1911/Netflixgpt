@@ -24,15 +24,14 @@ const VideoBackground = ({ movieId }) => {
         allow="autoplay; encrypted-media"
       />
 
-      {/* Netflix-style gradient blends */}
-      {/* Bottom fade for smooth transition to next container */}
+   
       <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black via-black/70 to-transparent" />
 
-      {/* Side fade for better focus on center content */}
+      
       <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-black/60 to-transparent" />
       <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-black/60 to-transparent" />
 
-      {/* Top fade so navbar/header blends with video */}
+      
       <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-black/70 to-transparent" />
     </>
   ) : (
