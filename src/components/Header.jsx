@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
-import logo from "../assets/logoPro.png";
-import { Search } from "lucide-react";
-import { House } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
-import { signOut, onAuthStateChanged } from "firebase/auth";
-import { LogOut } from "lucide-react";
-import { auth } from "../utils/firebase";
 import { useSelector, useDispatch } from "react-redux";
+import { signOut, onAuthStateChanged } from "firebase/auth";
+import { House, Search, LogOut } from "lucide-react";
+
+import logo from "../assets/logoPro.png";
+import ToggleThemeBtn from "../components/ToggleThemeBtn";
+import { auth } from "../utils/firebase";
 import { addUser, removeUser } from "../utils/userSlice";
 import { toggleGptSearchView } from "../utils/gptSearchSlice";
 import { supportedLang } from "../utils/constant";
 import { changeLanguage } from "../utils/configSlice";
-import ToggleThemeBtn from "../components/ToggleThemeBtn";
 
 const Header = () => {
   const user = useSelector((store) => store.user);
@@ -20,50 +19,42 @@ const Header = () => {
   const dispatch = useDispatch();
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // Reusable classes
+  const buttonClass =
+    "text-white cursor-pointer transition duration-500 hover:text-[#fa3862]";
+  const selectClass =
+    "text-white px-4 py-2 min-w-[120px] bg-secondary text-sm font-semibold rounded-full cursor-pointer hover:opacity-75 transition-all duration-200 shadow-md hover:shadow-lg outline-none";
+  const navLinkClass =
+    "text-white font-semibold text-md cursor-pointer transition duration-500 hover:text-[#fa3862]";
+
+  // Scroll effect
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Firebase auth listener
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName, photoURL } = user;
-        dispatch(
-          addUser({
-            uid,
-            email,
-            displayName,
-            photoURL,
-          })
-        );
+        dispatch(addUser({ uid, email, displayName, photoURL }));
         navigate("/browse");
       } else {
         dispatch(removeUser());
         navigate("/");
       }
     });
-
-    // unsubscribe when component unmounts
     return () => unsubscribe();
   }, [dispatch, navigate]);
 
-  function handleSignOut() {
-    signOut(auth)
-      .then(() => {})
-      .catch(() => {
-        navigate("/error");
-      });
-  }
-
+  const handleSignOut = () => signOut(auth).catch(() => navigate("/error"));
   const handleGptSearchClick = () => {
     dispatch(toggleGptSearchView());
+   
   };
-
-  const handleLangChange = (e) => {
-    dispatch(changeLanguage(e.target.value));
-  };
+  const handleLangChange = (e) => dispatch(changeLanguage(e.target.value));
 
   return (
     <header
@@ -73,28 +64,34 @@ const Header = () => {
           : "bg-gradient-to-b from-black/60 to-transparent"
       }`}
     >
-      <div className="max-w-screen-xl px-8 mx-auto flex justify-between items-center">
-        <div className="text-white cursor-pointer transition duration-500 hover:text-[#fa3862] font-bold text-md">
-          <Link to="/browse/my-list">My List</Link>
+      <nav className="max-w-screen-xl px-8 mx-auto flex items-center justify-between py-4">
+       
+        {user && (
+          <div className="flex items-center gap-4 md:gap-6">
+            <Link to="/browse" className={navLinkClass}>
+              Home
+            </Link>
+            <Link to="/browse/my-list" className={navLinkClass}>
+              My List
+            </Link>
+          </div>
+        )}
+
+        {/* Center: Logo */}
+        <div className="flex-1 flex justify-center">
+          <img
+            className="w-24 md:w-28 object-contain cursor-pointer"
+            src={logo}
+            alt="logo"
+            onClick={() => navigate("/browse")}
+          />
         </div>
 
-        <img
-          className="w-24 md:w-28 object-contain cursor-pointer"
-          src={logo}
-          alt="logo"
-          onClick={() => navigate("/browse")}
-        />
-
-        {/* Right Section */}
+        {/* Right: User controls */}
         {user && (
-          <div className="flex items-center gap-3 md:gap-8 justify-center">
+          <div className="flex items-center gap-3 md:gap-5">
             {showGptSearch && (
-              <select
-                className="text-white flex items-center justify-center gap-2 px-4 py-2 w-full min-w-[120px] bg-secondary text-sm font-semibold rounded-full cursor-pointer hover:opacity-75 transition-all duration-200 shadow-md hover:shadow-lg outline-none"
-                name="lang"
-                id="lang"
-                onChange={handleLangChange}
-              >
+              <select className={selectClass} onChange={handleLangChange}>
                 {supportedLang.map((lang) => (
                   <option key={lang.identifier} value={lang.identifier}>
                     {lang.name}
@@ -103,29 +100,14 @@ const Header = () => {
               </select>
             )}
 
-            <button
-              onClick={handleGptSearchClick}
-              className="text-white cursor-pointer transition duration-500 hover:text-[#fa3862]"
-            >
-              {showGptSearch ? <House size={20} /> : <Search size={20} />}
-            </button>
-
+           <button onClick={handleGptSearchClick} className={buttonClass}> {showGptSearch ? <House size={20} /> : <Search size={20} />} </button>
+           
             <ToggleThemeBtn />
 
-            <button
-              className=" text-white cursor-pointer transition duration-500 hover:text-[#fa3862]"
-              onClick={handleSignOut}
-            >
+            <button onClick={handleSignOut} className={buttonClass}>
               <LogOut size={20} />
             </button>
 
-            {/* <button
-                onClick={handleSignOut}
-                className=" text-white flex items-center justify-center gap-2 px-4 py-2 w-full min-w-[120px] bg-secondary text-sm font-semibold rounded-full cursor-pointer hover:opacity-75 transition-all duration-200 shadow-md hover:shadow-lg"
-              >
-                Sign Out
-                <ChevronRight className="w-4 h-4" />
-              </button> */}
             <img
               className="w-8 h-8 md:w-8 md:h-8 rounded-full object-cover cursor-pointer"
               src={user?.photoURL || "/default-avatar.png"}
@@ -133,7 +115,7 @@ const Header = () => {
             />
           </div>
         )}
-      </div>
+      </nav>
     </header>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import lang from "../utils/languageConstant";
 import { useGptSearch } from "../hooks/useGptSearch";
-import GptMovieSuggestions from "./GptMovieSuggestions";
+import GptMovieSuggestions from '../components/GptMovieSuggestions'
 
 const GptSearchBar = () => {
   //  hook is being used

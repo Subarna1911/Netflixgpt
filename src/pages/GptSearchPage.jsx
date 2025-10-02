@@ -1,5 +1,5 @@
 import React from 'react'
-import GptSearchBar from './GptSearchBar'
+import GptSearchBar from '../components/GptSearchBar'
 import {bannerBg} from '../utils/constant'
 
 const GptSearchPage = () => {

@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Plus, Check } from "lucide-react";
 
   const MoviePopup = ({ movie, trailer }) => {
-  const dispatch = useDispatch();
-  const watchlist = useSelector((state) => state.watchlist.movieList);
+  const dispatch   = useDispatch();
+  const watchlist  = useSelector((state) => state.watchlist.movieList);
 
   const isInWatchlist = watchlist.some((item) => item.id === movie.id);
 

@@ -23,7 +23,6 @@ import { addMoviesTrailer } from "../utils/movieSlice";
         (video) => video.type === "Trailer"
       );
 
-    
       const filterTrailer = MovieTrailer.length
         ? MovieTrailer[0]
         : json.results[0];

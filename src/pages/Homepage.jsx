@@ -2,7 +2,7 @@ import React from 'react'
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import MainContainer from '../components/MainContainer';
 import SecondaryContainer from "../components/SecondaryContainer";
-import GptSearchPage from '../components/GptSearchPage';
+import GptSearchPage from '../pages/GptSearchPage'
 import { useSelector } from "react-redux";
 import Footer from '../components/Footer';
 

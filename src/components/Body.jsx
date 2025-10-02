@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Error from "../components/Error";
 import Mylist from "../pages/Mylist";
 import Homepage from "../pages/Homepage";
+import MovieDetails from '../components/MovieDetails'
 
 const Body = () => {
   const appRouter = createBrowserRouter([
@@ -13,23 +14,15 @@ const Body = () => {
     },
 
   
-    {
-      path: "/browse",
-      element: <Browse />,
-      children:[
-
-        {
-          path:"",
-          element:<Homepage/>
-        },
-        
-        {
-          path:'my-list',
-          element:<Mylist/>
-        },
-      ]
-    },
-
+   {
+  path: "/browse",
+  element: <Browse />,
+  children: [
+    { path: "/browse", element: <Homepage /> },
+    { path: "my-list", element: <Mylist /> },
+    { path: "movie/:id", element: <MovieDetails /> }, // ✅ correct nesting
+  ],
+},
     {
       path: "/error",
       element: <Error />,

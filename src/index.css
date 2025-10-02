@@ -3,7 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
  :root{
-    --primary-color:#0e0a0d;
+    --primary-color:#030014;
     --sec-color:#fa3862;
     --btn-color:#250e15;
     --color-pink:#f16b88;
