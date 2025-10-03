@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 const Browse = () => {
   return (
 
-     <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300">
+     <div className="min-h-screen bg-white dark:bg-zinc-900  text-black dark:text-white transition-colors duration-300">
         <Header />
         <Outlet/>
         <Footer/>

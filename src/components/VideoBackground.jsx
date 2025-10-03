@@ -9,7 +9,7 @@ const VideoBackground = ({ movieId }) => {
   const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
 
   return (
- <div className="relative w-screen h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-screen overflow-hidden">
+ <div className="relative w-screen h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-screen overflow-hidden mask-b-from-20% mask-b-to-80%">
   {trailerVideo?.key ? (
     <>
       <iframe
