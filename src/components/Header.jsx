@@ -74,6 +74,10 @@ const Header = () => {
             <Link to="/browse/my-list" className={navLinkClass}>
               My List
             </Link>
+  
+            <Link to="/browse/contact" className={navLinkClass}>
+              Contact us
+            </Link>
           </div>
         )}
 
